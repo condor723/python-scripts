@@ -1,0 +1,17 @@
+Common Name:
+  - Client Services Operations Data Warehouse (CSODWH) ETL Job
+
+Dependencies:
+  - boto3
+  - botocore
+  - certifi
+  - chardet
+  - jmespath
+  - pip
+  - psycopg2
+  - python-dateutil
+  - requests
+  - s3transfer
+  - setuptools
+  - six
+  - urllib3
