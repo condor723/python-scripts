@@ -1,0 +1,66 @@
+{
+    "objects": [
+      {
+        "output": {
+          "ref": "DataNodeId_gvbks"
+        },
+        "input": [
+          {
+            "ref": "DataNodeId_gBGbI"
+          },
+          {
+            "ref": "DataNodeId_E40YX"
+          }
+        ],
+        "stage": "true",
+        "stdout": "s3://bv-dfs-megatron-prod/client/cricketwireless/scfeed/output/",
+        "name": "FTP Extract And Load - No Transform",
+        "id": "ShellCommandActivityId_k02jV",
+        "runsOn": {
+          "ref": "ResourceId_mUL8R"
+        },
+        "stderr": "s3://bv-dfs-megatron-prod/client/cricketwireless/scfeed/output/",
+        "type": "ShellCommandActivity",
+        "command": "sh ${INPUT1_STAGING_DIR}/scripts/runscript-aws.sh;"
+      },
+      {
+        "directoryPath": "s3://bv-dfs-megatron-prod/client/cricketwireless/scfeed/",
+        "name": "InputDataNode1",
+        "id": "DataNodeId_gBGbI",
+        "type": "S3DataNode"
+      },
+      {
+        "directoryPath": "s3://bv-dfs-megatron-prod/dfsScripts/",
+        "name": "ScriptsDataNode1",
+        "id": "DataNodeId_E40YX",
+        "type": "S3DataNode"
+      },
+      {
+        "directoryPath": "s3://bv-dfs-megatron-prod/client/cricketwireless/scfeed/output/",
+        "name": "OutputDataNode1",
+        "id": "DataNodeId_gvbks",
+        "type": "S3DataNode"
+      },
+      {
+        "subnetId": "subnet-0e38be56",
+        "resourceRole": "DataPipelineDefaultResourceRole",
+        "role": "DataPipelineDefaultRole",
+        "securityGroupIds": "sg-08dfce1718bf1dbbe",
+        "name": "DefaultResource1",
+        "keyPair": "bv-dfs-megatron",
+        "id": "ResourceId_mUL8R",
+        "type": "Ec2Resource",
+        "terminateAfter": "30 Minutes"
+      },
+      {
+        "failureAndRerunMode": "CASCADE",
+        "resourceRole": "DFSDataPipelineDefaultResourceRole",
+        "role": "DataPipelineDefaultRole",
+        "pipelineLogUri": "s3://bv-dfs-megatron-prod/client/cricketwireless/scfeed/output/",
+        "scheduleType": "ONDEMAND",
+        "name": "Default",
+        "id": "Default"
+      }
+    ],
+    "parameters": []
+  }

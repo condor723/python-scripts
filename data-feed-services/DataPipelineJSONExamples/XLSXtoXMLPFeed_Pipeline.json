@@ -1,0 +1,91 @@
+{
+  "objects": [
+    {
+      "failureAndRerunMode": "CASCADE",
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "resourceRole": "DataPipelineDefaultResourceRole",
+      "role": "DataPipelineDefaultRole",
+      "pipelineLogUri": "s3://bv-dfs-megatron-prod/client/hanesbrands/product/output/",
+      "scheduleType": "cron",
+      "name": "Default",
+      "id": "Default"
+    },
+    {
+      "output": {
+        "ref": "DataNodeId_gvbks"
+      },
+      "input": [
+        {
+          "ref": "DataNodeId_gBGbI"
+        },
+        {
+          "ref": "DataNodeId_E40YX"
+        }
+      ],
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "stage": "true",
+      "stdout": "s3://bv-dfs-megatron-prod/client/hanesbrands/product/output/",
+      "name": "XLSX to XML Transform",
+      "id": "ShellCommandActivityId_k02jV",
+      "runsOn": {
+        "ref": "ResourceId_mUL8R"
+      },
+      "stderr": "s3://bv-dfs-megatron-prod/client/hanesbrands/product/output/",
+      "type": "ShellCommandActivity",
+      "command": "sh ${INPUT1_STAGING_DIR}/scripts/runscript-aws.sh;" 
+    },
+    {
+      "period": "1 days",
+      "name": "Every 1 day",
+      "id": "DefaultSchedule",
+      "type": "Schedule",
+      "startAt": "FIRST_ACTIVATION_DATE_TIME"
+    },
+    {
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "directoryPath": "s3://bv-dfs-megatron-prod/dfsScripts/",
+      "name": "ScriptsDataNode1",
+      "id": "DataNodeId_E40YX",
+      "type": "S3DataNode"
+    },
+    {
+      "subnetId": "subnet-0e38be56",
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "resourceRole": "DataPipelineDefaultResourceRole",
+      "role": "DataPipelineDefaultRole",
+      "securityGroupIds": "sg-08dfce1718bf1dbbe",
+      "name": "DefaultResource1",
+      "keyPair": "bv-dfs-megatron",
+      "id": "ResourceId_mUL8R",
+      "type": "Ec2Resource",
+      "terminateAfter": "30 Minutes"
+    },
+    {
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "directoryPath": "s3://bv-dfs-megatron-prod/client/hanesbrands/product/output/",
+      "name": "OutputDataNode1",
+      "id": "DataNodeId_gvbks",
+      "type": "S3DataNode"
+    },
+    {
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "directoryPath": "s3://bv-dfs-megatron-prod/client/hanesbrands/product/",
+      "name": "InputDataNode1",
+      "id": "DataNodeId_gBGbI",
+      "type": "S3DataNode"
+    }
+  ],
+  "parameters": []
+}
