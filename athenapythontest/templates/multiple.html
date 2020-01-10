@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>athenapythontest | Multiple</title>
+        <link rel="stylesheet" type="text/css" href="/static/athenapythontest.css">
+    </head>
+    <body>
+        {# This template expects a mapping of queries to flattened result sets. #}
+        {% for query, results in queries.items() %}
+            <code>{{ query }}</code>
+            <br>
+            <pre>{{ results }}</pre>
+            <br>
+            <br>
+        {% endfor %}
+    </body>
+</html>
