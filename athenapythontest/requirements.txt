@@ -21,5 +21,5 @@ s3transfer==0.2.0
 six==1.12.0
 tenacity==5.0.4
 toml==0.10.0
-urllib3==1.25
+urllib3==1.26.5
 werkzeug>=0.15.3
